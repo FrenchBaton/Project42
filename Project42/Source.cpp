@@ -4,6 +4,7 @@ using namespace std;
 struct IWorker {
 	virtual void Work() = 0;
 	virtual int GetSalary() = 0;
+	virtual void Print() = 0;
 };
 
 
@@ -17,7 +18,7 @@ protected:
 public:
 	Employee(string n, int y, int s) : workYears(y), name(n), salary(s), allSalary(0){}
 	Employee(string n, int y, int s, int as) : workYears(y), name(n), salary(s){}
-	void Print() { cout << "Name: " << name << "\nWork years: " << workYears; }
+	void Print() { cout << "Name: " << name << "\nWork years: " << workYears << "\n-----------\n"; }
 };
 
 class Programmer: public Employee
@@ -66,8 +67,14 @@ int main() {
 	w[2] = new Manager("MN", 3, 2000);
 
 	for (int i = 0; i < 3; i++) {
+		w[i]->Print();
+	}
+	cout << endl;
+
+	for (int i = 0; i < 3; i++) {
 		w[i]->Work();
 	}
+	cout << endl;
 
 	cout << "Total salary: " << CalcSalary(w, 3) << endl;
 
